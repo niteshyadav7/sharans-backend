@@ -1,0 +1,202 @@
+[
+  {
+    "name": "Sharans Activated Charcoal & Aloe Vera Soap (100 g)",
+    "description": "Cleansing soap with charcoal & aloe vera for healthy skin.",
+    "originalPrice": 249,
+    "currentPrice": 149,
+    "stock": 50,
+    "category": "Bath & Body",
+    "images": ["https://example.com/image1.jpg"],
+    "sku": "SOAP1001"
+  },
+  {
+    "name": "Organic Lavender Face Cream (50 ml)",
+    "description": "Moisturizing cream with organic lavender extract.",
+    "originalPrice": 599,
+    "currentPrice": 499,
+    "stock": 40,
+    "category": "Skincare",
+    "images": ["https://example.com/image2.jpg"],
+    "sku": "CREAM1002"
+  },
+  {
+    "name": "Wireless Earbuds",
+    "description": "Bluetooth 5.0 earbuds with noise cancellation.",
+    "originalPrice": 2999,
+    "currentPrice": 2499,
+    "stock": 25,
+    "category": "Electronics",
+    "images": ["https://example.com/image3.jpg"],
+    "sku": "EARBUDS1003"
+  },
+  {
+    "name": "Mechanical Keyboard",
+    "description": "RGB mechanical keyboard with blue switches.",
+    "originalPrice": 2500,
+    "currentPrice": 2200,
+    "stock": 30,
+    "category": "Electronics",
+    "images": ["https://example.com/image4.jpg"],
+    "sku": "KEY1004"
+  },
+  {
+    "name": "Ergonomic Office Chair",
+    "description": "Comfortable office chair with lumbar support.",
+    "originalPrice": 8000,
+    "currentPrice": 7500,
+    "stock": 15,
+    "category": "Furniture",
+    "images": ["https://example.com/image5.jpg"],
+    "sku": "CHAIR1005"
+  },
+  {
+    "name": "Yoga Mat Non-Slip",
+    "description": "Durable non-slip yoga mat for all exercises.",
+    "originalPrice": 1200,
+    "currentPrice": 999,
+    "stock": 50,
+    "category": "Fitness",
+    "images": ["https://example.com/image6.jpg"],
+    "sku": "YOGA1006"
+  },
+  {
+    "name": "Smart LED Bulb",
+    "description": "WiFi controlled smart LED bulb with color change.",
+    "originalPrice": 1200,
+    "currentPrice": 899,
+    "stock": 60,
+    "category": "Electronics",
+    "images": ["https://example.com/image7.jpg"],
+    "sku": "BULB1007"
+  },
+  {
+    "name": "Stainless Steel Water Bottle (750 ml)",
+    "description": "Reusable water bottle, keeps liquids hot/cold.",
+    "originalPrice": 699,
+    "currentPrice": 549,
+    "stock": 70,
+    "category": "Kitchen",
+    "images": ["https://example.com/image8.jpg"],
+    "sku": "BOTTLE1008"
+  },
+  {
+    "name": "Organic Green Tea (100 g)",
+    "description": "Refreshing organic green tea leaves for daily use.",
+    "originalPrice": 399,
+    "currentPrice": 299,
+    "stock": 100,
+    "category": "Beverages",
+    "images": ["https://example.com/image9.jpg"],
+    "sku": "TEA1009"
+  },
+  {
+    "name": "Face Mask Pack of 5",
+    "description": "Natural herbal face mask pack for glowing skin.",
+    "originalPrice": 499,
+    "currentPrice": 399,
+    "stock": 45,
+    "category": "Skincare",
+    "images": ["https://example.com/image10.jpg"],
+    "sku": "MASK1010"
+  },
+  {
+    "name": "Running Shoes",
+    "description": "Lightweight running shoes for men and women.",
+    "originalPrice": 3500,
+    "currentPrice": 2999,
+    "stock": 35,
+    "category": "Footwear",
+    "images": ["https://example.com/image11.jpg"],
+    "sku": "SHOES1011"
+  },
+  {
+    "name": "Noise Cancelling Headphones",
+    "description": "Over-ear headphones with active noise cancellation.",
+    "originalPrice": 5999,
+    "currentPrice": 4999,
+    "stock": 20,
+    "category": "Electronics",
+    "images": ["https://example.com/image12.jpg"],
+    "sku": "HEAD1012"
+  },
+  {
+    "name": "Ceramic Coffee Mug",
+    "description": "Microwave-safe ceramic coffee mug (350 ml).",
+    "originalPrice": 499,
+    "currentPrice": 399,
+    "stock": 80,
+    "category": "Kitchen",
+    "images": ["https://example.com/image13.jpg"],
+    "sku": "MUG1013"
+  },
+  {
+    "name": "Bluetooth Speaker",
+    "description": "Portable Bluetooth speaker with deep bass.",
+    "originalPrice": 2500,
+    "currentPrice": 1999,
+    "stock": 30,
+    "category": "Electronics",
+    "images": ["https://example.com/image14.jpg"],
+    "sku": "SPEAKER1014"
+  },
+  {
+    "name": "Essential Oils Set (6 pcs)",
+    "description": "Aromatic essential oils for aromatherapy & massage.",
+    "originalPrice": 1999,
+    "currentPrice": 1499,
+    "stock": 25,
+    "category": "Wellness",
+    "images": ["https://example.com/image15.jpg"],
+    "sku": "OILS1015"
+  },
+  {
+    "name": "Desk Organizer",
+    "description": "Wooden desk organizer for office stationery.",
+    "originalPrice": 999,
+    "currentPrice": 799,
+    "stock": 40,
+    "category": "Office",
+    "images": ["https://example.com/image16.jpg"],
+    "sku": "DESK1016"
+  },
+  {
+    "name": "Electric Kettle 1.5L",
+    "description": "Stainless steel electric kettle with auto shut-off.",
+    "originalPrice": 1500,
+    "currentPrice": 1299,
+    "stock": 50,
+    "category": "Kitchen",
+    "images": ["https://example.com/image17.jpg"],
+    "sku": "KETTLE1017"
+  },
+  {
+    "name": "Hand Sanitizer 250 ml",
+    "description": "Alcohol-based hand sanitizer with moisturizing gel.",
+    "originalPrice": 299,
+    "currentPrice": 199,
+    "stock": 100,
+    "category": "Wellness",
+    "images": ["https://example.com/image18.jpg"],
+    "sku": "SANITIZER1018"
+  },
+  {
+    "name": "Cotton Bath Towel",
+    "description": "Soft and absorbent cotton bath towel.",
+    "originalPrice": 799,
+    "currentPrice": 599,
+    "stock": 60,
+    "category": "Bath & Body",
+    "images": ["https://example.com/image19.jpg"],
+    "sku": "TOWEL1019"
+  },
+  {
+    "name": "Smart Watch",
+    "description": "Fitness smart watch with heart rate monitor.",
+    "originalPrice": 4999,
+    "currentPrice": 4499,
+    "stock": 20,
+    "category": "Electronics",
+    "images": ["https://example.com/image20.jpg"],
+    "sku": "WATCH1020"
+  }
+]
