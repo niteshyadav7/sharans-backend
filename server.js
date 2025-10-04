@@ -12,7 +12,8 @@ import fs from "fs";
 import path from "path";
 import authRoutes from "./routes/auth.routes.js";
 import { protect } from "./middlewares/auth.middleware.js";
-import router from "./routes/product.routes.js";
+import productRoutes from "./routes/product.routes.js";
+import couponRoutes from "./routes/coupon.routes.js";
 
 // Load environment variables
 dotenv.config();
@@ -164,7 +165,8 @@ app.get("/api/protected", protect, (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-app.use("/api/products", router);
+app.use("/api/products", productRoutes);
+app.use("/api/coupons", couponRoutes);
 
 // ---------- Start ----------
 connectDB().then(() => {
