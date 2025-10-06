@@ -14,6 +14,8 @@ import authRoutes from "./routes/auth.routes.js";
 import { protect } from "./middlewares/auth.middleware.js";
 import productRoutes from "./routes/product.routes.js";
 import couponRoutes from "./routes/coupon.routes.js";
+import cartRoutes from "./routes/cart.routes.js";
+import orderRoutes from "./routes/order.routes.js";
 
 // Load environment variables
 dotenv.config();
@@ -167,7 +169,8 @@ app.get("/api/protected", protect, (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/coupons", couponRoutes);
-
+app.use("/api/cart", cartRoutes);
+app.use("/api/order", orderRoutes);
 // ---------- Start ----------
 connectDB().then(() => {
   server.listen(PORT, () => {

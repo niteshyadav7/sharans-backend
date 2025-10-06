@@ -16,6 +16,14 @@
 <!-- /api/coupons -->
 <!-- /api/coupons/bulk -->
 
+<!-- Admin -->
+
+{
+    "name": "Test Admin",
+    "email": "admintest@gmail.com",
+    "password": "test@123"
+}
+
 
 <!-- user -->
 {
