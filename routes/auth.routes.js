@@ -18,3 +18,4 @@ router.get("/all", protect, admin, getAllUsers); // Get all users
 // router.post("/admin/login", loginAdmin);
 
 export default router;
+ 
