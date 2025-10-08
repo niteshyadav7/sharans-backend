@@ -1,19 +1,30 @@
+// controllers/cart.controller.js
 import Cart from "../models/cart.model.js";
 import CartItem from "../models/cartItem.model.js";
 import Coupon from "../models/coupon.model.js";
 import { calculateCartTotal } from "../utils/calculateCartTotal.js";
 
-// Get or Create Cart(Create the cart)
+// Get or Create Cart
 export const getOrCreateCart = async (req, res) => {
   try {
-    let cart = await Cart.findOne({ user: req.user._id }).populate({
-      path: "items",
-      populate: { path: "product" },
-    });
-    if (!cart) cart = await Cart.create({ user: req.user._id });
-    res.status(200).json(cart);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    let cart = await Cart.findOne({ user: req.user._id })
+      .populate({
+        path: "items",
+        populate: { path: "product" },
+      })
+      .populate("coupon");
+
+    if (!cart) {
+      cart = await Cart.create({ user: req.user._id });
+    }
+
+    const totals = await calculateCartTotal(CartItem, cart._id, cart.coupon);
+    cart.total = totals.total;
+    await cart.save();
+
+    res.status(200).json({ cart, totals });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -21,6 +32,7 @@ export const getOrCreateCart = async (req, res) => {
 export const addItemToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
+
     let cart = await Cart.findOne({ user: req.user._id });
     if (!cart) cart = await Cart.create({ user: req.user._id });
 
@@ -36,12 +48,13 @@ export const addItemToCart = async (req, res) => {
     await item.save();
     if (!cart.items.includes(item._id)) cart.items.push(item._id);
 
-    cart.total = await calculateCartTotal(CartItem, cart._id);
+    const totals = await calculateCartTotal(CartItem, cart._id, cart.coupon);
+    cart.total = totals.total;
     await cart.save();
 
-    res.status(200).json({ message: "Item added", cart });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(200).json({ message: "Item added to cart", cart, totals });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -53,14 +66,17 @@ export const removeItemFromCart = async (req, res) => {
     if (!item) return res.status(404).json({ message: "Item not found" });
 
     await CartItem.findByIdAndDelete(itemId);
+
     const cart = await Cart.findById(item.cart);
     cart.items.pull(itemId);
-    cart.total = await calculateCartTotal(CartItem, cart._id);
+
+    const totals = await calculateCartTotal(CartItem, cart._id, cart.coupon);
+    cart.total = totals.total;
     await cart.save();
 
-    res.status(200).json({ message: "Item removed", cart });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(200).json({ message: "Item removed", cart, totals });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -68,27 +84,44 @@ export const removeItemFromCart = async (req, res) => {
 export const applyCoupon = async (req, res) => {
   try {
     const { code } = req.body;
+
     const cart = await Cart.findOne({ user: req.user._id });
     if (!cart) return res.status(404).json({ message: "Cart not found" });
 
     const coupon = await Coupon.findOne({ code });
     if (!coupon) return res.status(404).json({ message: "Invalid coupon" });
-    if (coupon.expiry && new Date() > new Date(coupon.expiry))
+
+    // Check expiry
+    if (coupon.expiryDate && new Date() > new Date(coupon.expiryDate)) {
       return res.status(400).json({ message: "Coupon expired" });
+    }
 
-    const total = await calculateCartTotal(CartItem, cart._id);
-    if (total < coupon.minPurchase)
-      return res
-        .status(400)
-        .json({ message: `Minimum purchase ₹${coupon.minPurchase} required` });
+    // Check usage limit
+    if (coupon.usageLimit && coupon.usedCount >= coupon.usageLimit) {
+      return res.status(400).json({ message: "Coupon usage limit reached" });
+    }
 
+    const totals = await calculateCartTotal(CartItem, cart._id, coupon._id);
+    if (totals.subtotal < coupon.minPurchase) {
+      return res.status(400).json({
+        message: `Minimum purchase ₹${coupon.minPurchase} required`,
+      });
+    }
+
+    // Apply coupon
     cart.coupon = coupon._id;
-    cart.total = total;
+    cart.total = totals.total;
     await cart.save();
 
-    res.status(200).json({ message: "Coupon applied", cart });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    // Increment coupon usage count
+    coupon.usedCount += 1;
+    await coupon.save();
+
+    res
+      .status(200)
+      .json({ message: "Coupon applied successfully", cart, totals });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -104,8 +137,8 @@ export const clearCart = async (req, res) => {
     cart.coupon = null;
     await cart.save();
 
-    res.status(200).json({ message: "Cart cleared" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(200).json({ message: "Cart cleared successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };

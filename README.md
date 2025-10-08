@@ -68,6 +68,21 @@
   "usageLimit": 5
 }
 
+<!-- API: http://localhost:8080/api/cart    get -->
+<!-- API: http://localhost:8080/api/cart/add    add to cart item  post-->
+<!-- http://localhost:8080/api/cart/apply-coupon apply coupon on the cart post-->
+<!-- http://localhost:8080/api/cart/remove/68e4a013d09f7f246e03b79c remove item from the cart  delete--> 
+<!-- http://localhost:8080/api/cart/clear clear items from the cart delete-->
+
+{
+  "productId": "68e0d24329019fbcc7324e7d",
+  "quantity": 2
+}
+{
+  "code": "DIWALI1C012E"
+}
+
+
 
 
 +---------+          +-----------+          +-----------+

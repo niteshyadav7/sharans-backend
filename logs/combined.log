@@ -30,3 +30,24 @@
 {"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 09:54:07"}
 {"level":"info","message":"::1 - - [08/Oct/2025:04:24:14 +0000] \"POST /api/auth/register HTTP/1.1\" 201 293 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 09:54:14"}
 {"level":"info","message":"::1 - - [08/Oct/2025:04:24:40 +0000] \"POST /api/auth/login HTTP/1.1\" 200 293 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 09:54:40"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 10:34:18"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 10:34:18"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 10:39:01"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 10:39:01"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 10:39:34"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 10:39:34"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 10:39:37"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 10:39:37"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 10:40:26"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 10:40:26"}
+{"level":"info","message":"⚠️  Received SIGINT. Closing server...","timestamp":"2025-10-08 11:01:44"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 11:06:07"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 11:06:08"}
+{"level":"info","message":"::1 - - [08/Oct/2025:05:36:10 +0000] \"GET /api/cart HTTP/1.1\" 200 231 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:06:10"}
+{"level":"info","message":"::1 - - [08/Oct/2025:05:37:17 +0000] \"POST /api/cart/add HTTP/1.1\" 200 294 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:07:17"}
+{"level":"info","message":"::1 - - [08/Oct/2025:05:37:27 +0000] \"GET /api/cart HTTP/1.1\" 200 689 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:07:27"}
+{"level":"info","message":"::1 - - [08/Oct/2025:05:45:55 +0000] \"POST /api/cart/apply-coupon HTTP/1.1\" 400 28 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:15:55"}
+{"level":"info","message":"::1 - - [08/Oct/2025:05:46:42 +0000] \"POST /api/cart/apply-coupon HTTP/1.1\" 200 346 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:16:42"}
+{"level":"info","message":"::1 - - [08/Oct/2025:05:47:08 +0000] \"GET /api/cart HTTP/1.1\" 200 1000 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:17:08"}
+{"level":"info","message":"::1 - - [08/Oct/2025:05:55:20 +0000] \"DELETE /api/cart/clear HTTP/1.1\" 200 39 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:25:20"}
+{"level":"info","message":"::1 - - [08/Oct/2025:05:55:32 +0000] \"GET /api/cart HTTP/1.1\" 200 245 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:25:32"}
