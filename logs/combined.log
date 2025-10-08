@@ -51,3 +51,13 @@
 {"level":"info","message":"::1 - - [08/Oct/2025:05:47:08 +0000] \"GET /api/cart HTTP/1.1\" 200 1000 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:17:08"}
 {"level":"info","message":"::1 - - [08/Oct/2025:05:55:20 +0000] \"DELETE /api/cart/clear HTTP/1.1\" 200 39 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:25:20"}
 {"level":"info","message":"::1 - - [08/Oct/2025:05:55:32 +0000] \"GET /api/cart HTTP/1.1\" 200 245 \"-\" \"PostmanRuntime/7.48.0\"","timestamp":"2025-10-08 11:25:32"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 11:45:00"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 11:45:00"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 11:54:04"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 11:54:04"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 11:54:34"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 11:54:34"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 11:54:41"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 11:54:41"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-08 12:30:47"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-08 12:30:47"}

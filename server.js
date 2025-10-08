@@ -171,7 +171,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/coupons", couponRoutes);
 app.use("/api/cart", cartRoutes);
-app.use("/api/order", orderRoutes);
+app.use("/api/orders", orderRoutes);
 // ---------- Start ----------
 connectDB().then(() => {
   server.listen(PORT, () => {

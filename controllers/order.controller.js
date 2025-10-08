@@ -1,81 +1,138 @@
+import crypto from "crypto";
+import Razorpay from "razorpay";
+import Order from "../models/order.model.js";
 import Cart from "../models/cart.model.js";
 import CartItem from "../models/cartItem.model.js";
-import Coupon from "../models/coupon.model.js";
-import Order from "../models/order.model.js";
-import Product from "../models/product.model.js";
-import { calculateCartTotal } from "../utils/calculateCartTotal.js";
+import { razorpayInstance } from "../utils/razorpay.js";
 
-export const checkout = async (req, res) => {
+// ✅ Create Order (COD or Razorpay)
+export const createOrder = async (req, res) => {
   try {
-    const userId = req.user._id;
-    const cart = await Cart.findOne({ user: userId })
-      .populate({ path: "items", populate: { path: "product" } })
-      .populate("coupon");
+    const { paymentMethod, shippingAddress } = req.body;
+    const cart = await Cart.findOne({ user: req.user._id }).populate({
+      path: "items",
+      populate: { path: "product" },
+    });
 
     if (!cart || cart.items.length === 0)
       return res.status(400).json({ message: "Cart is empty" });
 
-    let total = await calculateCartTotal(CartItem, cart._id);
-    let discount = 0;
-    let finalAmount = total;
+    const totalAmount = cart.total;
 
-    // Apply coupon
-    if (cart.coupon) {
-      const coupon = await Coupon.findById(cart.coupon);
-      if (coupon) {
-        if (coupon.type === "percentage") {
-          discount = (total * coupon.value) / 100;
-          if (coupon.maxDiscount && discount > coupon.maxDiscount)
-            discount = coupon.maxDiscount;
-        } else if (coupon.type === "flat") {
-          discount = coupon.value;
-        }
-        finalAmount = total - discount;
-      }
+    if (paymentMethod === "COD") {
+      // Create order directly
+      const order = await Order.create({
+        user: req.user._id,
+        items: cart.items.map((i) => ({
+          product: i.product._id,
+          quantity: i.quantity,
+          price: i.product.currentPrice,
+        })),
+        shippingAddress,
+        totalAmount,
+        paymentMethod,
+        paymentStatus: "pending",
+        orderStatus: "processing",
+      });
+
+      await CartItem.deleteMany({ cart: cart._id });
+      cart.items = [];
+      cart.total = 0;
+      cart.coupon = null;
+      await cart.save();
+
+      return res.status(201).json({ message: "Order placed (COD)", order });
     }
 
-    // Stock check
-    for (const item of cart.items) {
-      if (item.product.stock < item.quantity)
-        return res
-          .status(400)
-          .json({ message: `${item.product.name} is out of stock` });
-    }
+    if (paymentMethod === "Razorpay") {
+      const options = {
+        amount: totalAmount * 100, // convert to paise
+        currency: "INR",
+        receipt: `order_rcpt_${Date.now()}`,
+      };
+      const razorpayOrder = await razorpayInstance.orders.create(options);
 
-    // Create order
-    const orderItems = cart.items.map((i) => ({
-      product: i.product._id,
-      quantity: i.quantity,
-      price: i.product.price,
-    }));
+      const order = await Order.create({
+        user: req.user._id,
+        items: cart.items.map((i) => ({
+          product: i.product._id,
+          quantity: i.quantity,
+          price: i.product.currentPrice,
+        })),
+        shippingAddress,
+        totalAmount,
+        paymentMethod,
+        paymentStatus: "pending",
+        razorpayOrderId: razorpayOrder.id,
+      });
 
-    const order = await Order.create({
-      user: userId,
-      cart: cart._id,
-      items: orderItems,
-      coupon: cart.coupon?._id || null,
-      total,
-      discount,
-      finalAmount,
-      paymentStatus: "paid",
-      orderStatus: "processing",
-    });
-
-    // Deduct stock
-    for (const i of cart.items) {
-      await Product.findByIdAndUpdate(i.product._id, {
-        $inc: { stock: -i.quantity },
+      res.status(200).json({
+        message: "Razorpay order created",
+        razorpayOrderId: razorpayOrder.id,
+        amount: options.amount,
+        key: process.env.RAZORPAY_KEY_ID,
+        order,
       });
     }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
-    // Clear cart
-    await CartItem.deleteMany({ cart: cart._id });
-    cart.items = [];
-    cart.total = 0;
-    cart.coupon = null;
-    await cart.save();
+// ✅ Verify Razorpay Payment
+export const verifyPayment = async (req, res) => {
+  try {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+      req.body;
 
-    res.status(201).json({ message: "Order placed successfully", order });
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+    const expectedSignature = crypto
+      .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+      .update(body.toString())
+      .digest("hex");
+
+    if (expectedSignature === razorpay_signature) {
+      const order = await Order.findOne({ razorpayOrderId: razorpay_order_id });
+      order.paymentStatus = "paid";
+      order.razorpayPaymentId = razorpay_payment_id;
+      order.razorpaySignature = razorpay_signature;
+      await order.save();
+
+      await CartItem.deleteMany({ cart: order.cart });
+      return res.status(200).json({ message: "Payment verified", order });
+    } else {
+      return res.status(400).json({ message: "Invalid signature" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// ✅ Get All Orders (for logged-in user)
+export const getUserOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ user: req.user._id })
+      .populate("items.product")
+      .sort({ createdAt: -1 });
+    res.status(200).json({ orders });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// ✅ Admin: Update Order Status
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const order = await Order.findById(id);
+    if (!order) return res.status(404).json({ message: "Order not found" });
+
+    order.orderStatus = status;
+    await order.save();
+
+    res.status(200).json({ message: "Order status updated", order });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

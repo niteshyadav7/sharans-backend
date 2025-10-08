@@ -82,7 +82,33 @@
   "code": "DIWALI1C012E"
 }
 
-
+<!-- Order -->
+<!-- http://localhost:8080/api/orders/create post -->
+{
+  "paymentMethod": "COD",
+  "shippingAddress": {
+    "name": "Nitesh Yadav",
+    "phone": "9876543210",
+    "address": "Sector 63",
+    "city": "Noida",
+    "state": "UP",
+    "zip": "201301",
+    "country": "India"
+  }
+}
+<!-- http://localhost:8080/api/orders/create post razo -->
+{
+  "paymentMethod": "Razorpay",
+  "shippingAddress": {
+    "name": "Nitesh Yadav",
+    "phone": "9876543210",
+    "address": "Sector 63",
+    "city": "Noida",
+    "state": "UP",
+    "zip": "201301",
+    "country": "India"
+  }
+}
 
 
 +---------+          +-----------+          +-----------+
