@@ -1,0 +1,243 @@
+[{
+  "_id": {
+    "$oid": "68e6ad8512afda5d2f002225"
+  },
+  "name": "Organic Aloe Vera Gel",
+  "description": "Pure organic aloe vera gel for skin and hair care.",
+  "originalPrice": 499,
+  "currentPrice": 349,
+  "stock": 120,
+  "category": "Skin Care",
+  "images": [
+    "https://images.pexels.com/photos/4502070/pexels-photo-4502070.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://example.com/images/aloe2.jpg"
+  ],
+  "sku": "ALOE-GEL-001",
+  "createdAt": {
+    "$date": "2025-10-08T18:29:25.213Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-08T18:29:25.213Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e747b4cab89e8679d81327"
+  },
+  "name": "Sharans Activated Charcoal Soap",
+  "description": "Deep cleansing charcoal soap for healthy skin",
+  "originalPrice": 249,
+  "currentPrice": 149,
+  "stock": 50,
+  "category": "Bath & Body",
+  "images": [
+    "https://images.pexels.com/photos/4502069/pexels-photo-4502069.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "SOAP1002",
+  "createdAt": {
+    "$date": "2025-10-09T05:27:16.036Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:27:16.036Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e747d6cab89e8679d8132a"
+  },
+  "name": "Organic Lavender Face Cream (50 ml)",
+  "description": "Moisturizing cream with organic lavender extract",
+  "originalPrice": 599,
+  "currentPrice": 499,
+  "stock": 40,
+  "category": "Skincare",
+  "images": [
+    "https://images.pexels.com/photos/3762880/pexels-photo-3762880.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "CREAM1003",
+  "createdAt": {
+    "$date": "2025-10-09T05:27:50.517Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:27:50.517Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e7486ecab89e8679d81346"
+  },
+  "name": "Wireless Earbuds",
+  "description": "Bluetooth 5.0 earbuds with noise cancellation",
+  "originalPrice": 2999,
+  "currentPrice": 2499,
+  "stock": 25,
+  "category": "Electronics",
+  "images": [
+    "https://images.pexels.com/photos/373945/pexels-photo-373945.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "EARBUDS1004",
+  "createdAt": {
+    "$date": "2025-10-09T05:30:22.396Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:30:22.396Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e74887cab89e8679d81349"
+  },
+  "name": "Mechanical Keyboard",
+  "description": "RGB mechanical keyboard with blue switches",
+  "originalPrice": 2500,
+  "currentPrice": 2200,
+  "stock": 30,
+  "category": "Electronics",
+  "images": [
+    "https://images.pexels.com/photos/787033/pexels-photo-787033.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "KEYBOARD1005",
+  "createdAt": {
+    "$date": "2025-10-09T05:30:47.744Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:30:47.744Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e748dccab89e8679d81354"
+  },
+  "name": "Aloe Vera Face Wash",
+  "description": "Gentle face wash with soothing aloe vera",
+  "originalPrice": 399,
+  "currentPrice": 299,
+  "stock": 50,
+  "category": "Skincare",
+  "images": [
+    "https://images.pexels.com/photos/3952034/pexels-photo-3952034.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "FACEWASH1006",
+  "createdAt": {
+    "$date": "2025-10-09T05:32:12.525Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:32:12.525Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e7491acab89e8679d81357"
+  },
+  "name": "Vitamin C Serum",
+  "description": "Brightening serum for glowing skin",
+  "originalPrice": 899,
+  "currentPrice": 799,
+  "stock": 50,
+  "category": "Skincare",
+  "images": [
+    "https://images.pexels.com/photos/3952229/pexels-photo-3952229.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "SERUM1007",
+  "createdAt": {
+    "$date": "2025-10-09T05:33:14.174Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:33:14.174Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e74969cab89e8679d81362"
+  },
+  "name": "Coconut Hair Shampoo",
+  "description": "Nourishing shampoo for smooth hair",
+  "originalPrice": 499,
+  "currentPrice": 399,
+  "stock": 50,
+  "category": "Hair Care",
+  "images": [
+    "https://images.pexels.com/photos/4640492/pexels-photo-4640492.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "SHAMPOO1008",
+  "createdAt": {
+    "$date": "2025-10-09T05:34:33.599Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:34:33.599Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e74991cab89e8679d81365"
+  },
+  "name": "Herbal Body Lotion",
+  "description": "Moisturizing lotion with natural herbs",
+  "originalPrice": 599,
+  "currentPrice": 499,
+  "stock": 50,
+  "category": "Bath & Body",
+  "images": [
+    "https://images.pexels.com/photos/4753620/pexels-photo-4753620.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "BODYLOTION1009",
+  "createdAt": {
+    "$date": "2025-10-09T05:35:13.527Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:35:13.527Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e749afcab89e8679d81368"
+  },
+  "name": "Rose Water Toner",
+  "description": "Refreshing toner with natural rose water",
+  "originalPrice": 349,
+  "currentPrice": 299,
+  "stock": 50,
+  "category": "Skincare",
+  "images": [
+    "https://images.pexels.com/photos/4149046/pexels-photo-4149046.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "TONER1010",
+  "createdAt": {
+    "$date": "2025-10-09T05:35:43.981Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:35:43.981Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e749d4cab89e8679d8136c"
+  },
+  "name": "Tea Tree Oil Soap",
+  "description": "Refreshing soap with tea tree oil",
+  "originalPrice": 299,
+  "currentPrice": 199,
+  "stock": 40,
+  "category": "Bath & Body",
+  "images": [
+    "https://images.pexels.com/photos/4502070/pexels-photo-4502070.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ],
+  "sku": "SOAP1003",
+  "createdAt": {
+    "$date": "2025-10-09T05:36:20.514Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-09T05:36:20.514Z"
+  },
+  "__v": 0
+}]
