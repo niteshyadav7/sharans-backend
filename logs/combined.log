@@ -402,3 +402,6 @@
 {"level":"info","message":"::1 - - [09/Oct/2025:07:59:34 +0000] \"GET /api/cart/ HTTP/1.1\" 200 245 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 13:29:34"}
 {"level":"info","message":"::1 - - [09/Oct/2025:07:59:34 +0000] \"GET /api/orders/ HTTP/1.1\" 200 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 13:29:34"}
 {"level":"info","message":"⚠️  Received SIGINT. Closing server...","timestamp":"2025-10-09 13:31:27"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 13:40:12"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 13:40:12"}
+{"level":"info","message":"⚠️  Received SIGINT. Closing server...","timestamp":"2025-10-09 13:40:14"}
