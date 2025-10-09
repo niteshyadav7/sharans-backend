@@ -16,12 +16,17 @@ import productRoutes from "./routes/product.routes.js";
 import couponRoutes from "./routes/coupon.routes.js";
 import cartRoutes from "./routes/cart.routes.js";
 import orderRoutes from "./routes/order.routes.js";
+import Razorpay from "razorpay";
+import jwt from "jsonwebtoken";
 
 // Load environment variables
 dotenv.config();
 const PORT = process.env.PORT || 8080;
 const NODE_ENV = process.env.NODE_ENV || "production";
 const MONGO_URI = process.env.MONGO_URI;
+const JWT_SECRET = process.env.JWT_SECRET;
+const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID;
+const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET;
 
 // ---------- Ensure logs folder exists ----------
 const logDir = "logs";
@@ -172,6 +177,22 @@ app.use("/api/products", productRoutes);
 app.use("/api/coupons", couponRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
+
+// utils
+
+//---------------razorpay-----------------
+export const razorpayInstance = new Razorpay({
+  key_id: RAZORPAY_KEY_ID,
+  key_secret: RAZORPAY_KEY_SECRET,
+});
+
+//-----------------generate token----------
+export const generateToken = (id, role) => {
+  return jwt.sign({ id, role }, JWT_SECRET, {
+    expiresIn: "7d",
+  });
+};
+
 // ---------- Start ----------
 connectDB().then(() => {
   server.listen(PORT, () => {

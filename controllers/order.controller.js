@@ -3,7 +3,8 @@ import Razorpay from "razorpay";
 import Order from "../models/order.model.js";
 import Cart from "../models/cart.model.js";
 import CartItem from "../models/cartItem.model.js";
-import { razorpayInstance } from "../utils/razorpay.js";
+import { razorpayInstance } from "../server.js";
+// import { razorpayInstance } from "../utils/razorpay.js";
 
 // ✅ Create Order (COD or Razorpay)
 export const createOrder = async (req, res) => {

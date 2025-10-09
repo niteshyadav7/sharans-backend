@@ -292,3 +292,61 @@
 {"level":"info","message":"::1 - - [09/Oct/2025:05:38:17 +0000] \"DELETE /api/cart/clear HTTP/1.1\" 200 39 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:08:17"}
 {"level":"info","message":"::1 - - [09/Oct/2025:05:38:17 +0000] \"GET /api/cart/ HTTP/1.1\" 200 246 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:08:17"}
 {"level":"info","message":"::1 - - [09/Oct/2025:05:38:17 +0000] \"GET /api/orders/ HTTP/1.1\" 200 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:08:17"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:26:04"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:26:04"}
+{"level":"info","message":"::1 - - [09/Oct/2025:05:56:40 +0000] \"POST /api/auth/login HTTP/1.1\" 401 39 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:26:40"}
+{"level":"info","message":"::1 - - [09/Oct/2025:05:57:23 +0000] \"POST /api/auth/register HTTP/1.1\" 201 291 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:27:23"}
+{"level":"info","message":"::1 - - [09/Oct/2025:05:57:40 +0000] \"POST /api/auth/login HTTP/1.1\" 200 291 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:27:40"}
+{"level":"info","message":"::1 - - [09/Oct/2025:05:57:45 +0000] \"GET /api/orders/ HTTP/1.1\" 200 13 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:27:45"}
+{"level":"info","message":"::1 - - [09/Oct/2025:05:57:49 +0000] \"GET /api/cart/ HTTP/1.1\" 200 231 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:27:49"}
+{"level":"info","message":"::1 - - [09/Oct/2025:05:57:51 +0000] \"GET /api/products HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:27:51"}
+{"level":"info","message":"::1 - - [09/Oct/2025:05:57:54 +0000] \"POST /api/cart/add HTTP/1.1\" 200 294 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:27:54"}
+{"level":"info","message":"::1 - - [09/Oct/2025:05:57:58 +0000] \"GET /api/cart/ HTTP/1.1\" 200 842 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","timestamp":"2025-10-09 11:27:58"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:28:56"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:28:56"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:29:24"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:29:24"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:29:28"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:29:28"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:29:49"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:29:49"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:30:30"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:30:30"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:30:35"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:30:35"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:30:44"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:30:44"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:30:49"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:30:49"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:30:57"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:30:57"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:31:14"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:31:14"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:31:32"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:31:32"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:32:51"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:32:51"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:33:10"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:33:10"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:34:43"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:34:43"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:34:56"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:34:56"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:34:58"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:34:58"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:35:00"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:35:00"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:35:24"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:35:24"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:35:28"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:35:28"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:35:53"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:35:53"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:35:56"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:35:56"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:36:11"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:36:11"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:36:12"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:36:12"}
+{"level":"info","message":"✅ MongoDB connected successfully","timestamp":"2025-10-09 11:36:39"}
+{"level":"info","message":"🚀 Server running on http://localhost:8080 in production mode","timestamp":"2025-10-09 11:36:39"}
