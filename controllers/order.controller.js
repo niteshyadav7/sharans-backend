@@ -138,3 +138,27 @@ export const updateOrderStatus = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+// ✅ Admin: Get all orders
+export const getAllOrders = async (req, res) => {
+  try {
+    // Optional: Add pagination query params
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 50;
+    const skip = (page - 1) * limit;
+
+    const orders = await Order.find()
+      .populate("user", "name email")
+      .populate("items.product")
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    const totalOrders = await Order.countDocuments();
+
+    res.status(200).json({ orders, totalOrders });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

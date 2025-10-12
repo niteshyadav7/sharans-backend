@@ -1,9 +1,10 @@
 import express from "express";
-import { protect } from "../middlewares/auth.middleware.js";
+import { admin, protect } from "../middlewares/auth.middleware.js";
 import {
   createOrder,
   verifyPayment,
   getUserOrders,
+  getAllOrders,
   updateOrderStatus,
 } from "../controllers/order.controller.js";
 
@@ -18,7 +19,12 @@ router.post("/verify", protect, verifyPayment);
 // Get user orders
 router.get("/", protect, getUserOrders);
 
-// Update order status (Admin)
-router.put("/:id/status", protect, updateOrderStatus);
+// // Update order status (Admin)
+// router.put("/:id/status", protect, updateOrderStatus);
+
+
+// Admin routes
+router.get("/all", protect, admin, getAllOrders);
+router.put("/:id/status", protect, admin, updateOrderStatus);
 
 export default router;
