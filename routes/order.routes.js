@@ -22,7 +22,7 @@ router.get("/", protect, getUserOrders);
 // // Update order status (Admin)
 // router.put("/:id/status", protect, updateOrderStatus);
 
-
+// this is the route of go
 // Admin routes
 router.get("/all", protect, admin, getAllOrders);
 router.put("/:id/status", protect, admin, updateOrderStatus);
