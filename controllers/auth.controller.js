@@ -1,9 +1,6 @@
 
-// import Admin from "../models/admin.model.js";
 import User from "../models/user.model.js";
 import { generateToken } from "../server.js";
-// import { generateToken } from "../utils/generateToken.js";
-
 // Register User
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -59,17 +56,32 @@ export const getAllUsers = async (req, res) => {
 
 // ----------------------------
 // UPDATE PROFILE (Logged-in User)
-// ----------------------------
 export const updateProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id); // req.user from protect middleware
+    const user = await User.findById(req.user._id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    const { name, email, password } = req.body;
+    const {
+      name,
+      email,
+      password,
+      phone,
+      profileImage,
+      address,
+      dateOfBirth,
+      gender,
+      bio,
+    } = req.body;
 
     if (name) user.name = name;
     if (email) user.email = email;
     if (password) user.password = password;
+    if (phone) user.phone = phone;
+    if (profileImage) user.profileImage = profileImage;
+    if (address) user.address = address;
+    if (dateOfBirth) user.dateOfBirth = dateOfBirth;
+    if (gender) user.gender = gender;
+    if (bio) user.bio = bio;
 
     const updatedUser = await user.save();
 
@@ -77,6 +89,12 @@ export const updateProfile = async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      phone: updatedUser.phone,
+      profileImage: updatedUser.profileImage,
+      address: updatedUser.address,
+      dateOfBirth: updatedUser.dateOfBirth,
+      gender: updatedUser.gender,
+      bio: updatedUser.bio,
       role: updatedUser.role,
       token: generateToken(updatedUser._id, updatedUser.role),
     });
@@ -84,23 +102,3 @@ export const updateProfile = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-// // Login Admin
-// export const loginAdmin = async (req, res) => {
-//   const { email, password } = req.body;
-//   try {
-//     const admin = await Admin.findOne({ email });
-//     if (!admin || !(await admin.matchPassword(password)))
-//       return res.status(401).json({ message: "Invalid email or password" });
-
-//     res.json({
-//       _id: admin._id,
-//       name: admin.name,
-//       email: admin.email,
-//       role: "admin",
-//       token: generateToken(admin._id, "admin"),
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };

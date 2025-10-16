@@ -1,3 +1,5 @@
+
+
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
@@ -5,7 +7,6 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      // required: [true, "Name is required"],
       trim: true,
       minlength: 3,
       maxlength: 50,
@@ -24,6 +25,32 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
       minlength: 6,
+    },
+    phone: {
+      type: String,
+      maxlength: 15,
+    },
+    profileImage: {
+      type: String, // can store a URL
+      default: "https://cdn-icons-png.flaticon.com/512/847/847969.png",
+    },
+    address: {
+      street: String,
+      city: String,
+      state: String,
+      postalCode: String,
+      country: String,
+    },
+    dateOfBirth: {
+      type: Date,
+    },
+    gender: {
+      type: String,
+      enum: ["male", "female", "other"],
+    },
+    bio: {
+      type: String,
+      maxlength: 300,
     },
     role: {
       type: String,

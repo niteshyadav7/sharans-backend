@@ -1,7 +1,11 @@
 import express from "express";
-import { registerUser, loginUser, updateProfile, getAllUsers } from "../controllers/auth.controller.js";
+import {
+  registerUser,
+  loginUser,
+  getAllUsers,
+  updateProfile,
+} from "../controllers/auth.controller.js";
 import { admin, protect } from "../middlewares/auth.middleware.js";
-
 
 const router = express.Router();
 
@@ -18,4 +22,3 @@ router.get("/all", protect, admin, getAllUsers); // Get all users
 // router.post("/admin/login", loginAdmin);
 
 export default router;
- 
