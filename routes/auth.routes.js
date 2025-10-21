@@ -1,24 +1,49 @@
+// import express from "express";
+// import {
+//   registerUser,
+//   loginUser,
+//   getAllUsers,
+//   updateProfile,
+// } from "../controllers/auth.controller.js";
+// import { admin, protect } from "../middlewares/auth.middleware.js";
+
+// const router = express.Router();
+
+// // User routes
+// router.post("/register", registerUser);
+// router.post("/login", loginUser);
+// // Protected routes
+// router.put("/profile", protect, updateProfile); // Update logged-in user's profile
+
+// // Admin-only routes
+// router.get("/all", protect, admin, getAllUsers); // Get all users
+
+// // Admin routes
+// // router.post("/admin/login", loginAdmin);
+
+// export default router;
+
 import express from "express";
 import {
   registerUser,
   loginUser,
-  getAllUsers,
   updateProfile,
+  getAllUsers,
+  toggleUserStatus,
 } from "../controllers/auth.controller.js";
 import { admin, protect } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-// User routes
+// Public routes
 router.post("/register", registerUser);
 router.post("/login", loginUser);
+
 // Protected routes
 router.put("/profile", protect, updateProfile); // Update logged-in user's profile
 
 // Admin-only routes
 router.get("/all", protect, admin, getAllUsers); // Get all users
-
-// Admin routes
-// router.post("/admin/login", loginAdmin);
+router.patch("/toggle/:userId", protect, admin, toggleUserStatus); // Block/Activate user
 
 export default router;
