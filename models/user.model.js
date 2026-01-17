@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema(
         "Please provide a valid email",
       ],
     },
-    password: { type: String, required: [true, "Password is required"], minlength: 6 },
+    password: { type: String, minlength: 6 }, // Optional for social login users
     phone: { type: String, maxlength: 15 },
     profileImage: {
       type: String,
@@ -50,6 +50,12 @@ const userSchema = new mongoose.Schema(
     referralCode: { type: String, unique: true, sparse: true },
     referredBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     isReferralBonusPaid: { type: Boolean, default: false }, // Has the referrer been paid?
+
+    // Social Authentication
+    googleId: { type: String, sparse: true },
+    githubId: { type: String, sparse: true },
+    authProvider: { type: String, enum: ['local', 'google', 'github'], default: 'local' },
+    avatar: { type: String }, // Social profile picture
 
   },
   { timestamps: true }

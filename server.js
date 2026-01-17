@@ -1,7 +1,9 @@
-import express from "express"; // server start
-
-import http from "http";
+// Load environment variables FIRST before any other imports
 import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express"; // server start
+import http from "http";
 import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
@@ -11,6 +13,8 @@ import compression from "compression";
 import winston from "winston";
 import fs from "fs";
 import path from "path";
+import passport from "passport";
+import configurePassport from "./config/passport.js";
 import authRoutes from "./routes/auth.routes.js";
 import { protect } from "./middlewares/auth.middleware.js";
 import productRoutes from "./routes/product.routes.js";
@@ -35,8 +39,7 @@ import Razorpay from "razorpay";
 import jwt from "jsonwebtoken";
 
 
-// Load environment variables
-dotenv.config();
+// Environment variables are already loaded
 const PORT = process.env.PORT || 8080;
 const NODE_ENV = process.env.NODE_ENV || "production";
 const MONGO_URI = process.env.MONGO_URI;
@@ -110,6 +113,10 @@ app.use(cors({
 }));
 app.use(helmet());
 app.use(compression());
+
+// Initialize Passport
+app.use(passport.initialize());
+configurePassport(passport);
 
 // Rate Limiting
 const limiter = rateLimit({

@@ -257,6 +257,37 @@ export const resetPassword = async (req, res) => {
   }
 };
 
+// Get Current User (Me)
+export const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('-password');
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+    
+    res.json({
+      success: true,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        profileImage: user.profileImage,
+        address: user.address,
+        dateOfBirth: user.dateOfBirth,
+        gender: user.gender,
+        bio: user.bio,
+        role: user.role,
+        isEmailVerified: user.isEmailVerified,
+        referralCode: user.referralCode,
+        loyaltyPoints: user.loyaltyPoints,
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 // Update Profile
 export const updateProfile = async (req, res) => {
   try {

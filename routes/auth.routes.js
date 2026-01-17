@@ -34,6 +34,7 @@ import {
   resendVerificationEmail,
   forgotPassword,
   resetPassword,
+  getMe,
 } from "../controllers/auth.controller.js";
 import { admin, protect } from "../middlewares/auth.middleware.js";
 import { 
@@ -66,11 +67,52 @@ router.post("/reset-password/:token", [
 ], resetPassword);
 
 // Protected routes
+router.get("/me", protect, getMe);
 router.put("/profile", protect, updateProfileValidation, updateProfile);
 
 // Admin-only routes
 router.get("/all", protect, admin, getAllUsers);
 router.patch("/toggle/:userId", protect, admin, toggleUserStatus);
+
+// OAuth Routes
+import passport from 'passport';
+import jwt from 'jsonwebtoken';
+
+// Google OAuth
+router.get('/google', 
+  passport.authenticate('google', { session: false })
+);
+
+router.get('/google/callback',
+  passport.authenticate('google', { session: false, failureRedirect: '/login' }),
+  (req, res) => {
+    // Generate JWT token
+    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN || '1d',
+    });
+    
+    // Redirect to frontend with token
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/callback?token=${token}`);
+  }
+);
+
+// GitHub OAuth
+router.get('/github',
+  passport.authenticate('github', { session: false })
+);
+
+router.get('/github/callback',
+  passport.authenticate('github', { session: false, failureRedirect: '/login' }),
+  (req, res) => {
+    // Generate JWT token
+    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN || '1d',
+    });
+    
+    // Redirect to frontend with token
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/callback?token=${token}`);
+  }
+);
 
 export default router;
 
