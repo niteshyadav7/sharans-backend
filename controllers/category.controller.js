@@ -11,40 +11,66 @@ export const bulkUploadCategories = async (req, res) => {
 
     const filePath = req.file.path;
     const jsonArray = await csv().fromFile(filePath);
+    fs.unlinkSync(filePath);
 
     const categories = [];
+    const errors = [];
     const slugsInBatch = new Set();
+    let rowIndex = 1;
 
     for (const row of jsonArray) {
-      if (!row.name) continue;
+      rowIndex++;
+      if (!row.name) {
+          errors.push({ row: rowIndex, name: 'Unknown', error: "Name is required" });
+          continue;
+      }
 
       const slug = slugify(row.name, { lower: true, strict: true });
-
-      // Skip if slug already processed in this batch
-      if (slugsInBatch.has(slug)) continue;
+      if (slugsInBatch.has(slug)) {
+          errors.push({ row: rowIndex, name: row.name, error: "Duplicate in batch" });
+          continue;
+      }
 
       const exists = await Category.findOne({ slug });
-      if (!exists) {
-        categories.push({
+      if (exists) {
+          errors.push({ row: rowIndex, name: row.name, error: "Already exists in DB" });
+          continue;
+      }
+
+      categories.push({
           name: row.name.trim(),
           slug,
           description: row.description || "",
           image: row.image || "",
           isActive: row.isActive?.toLowerCase() === "true",
-        });
-        slugsInBatch.add(slug);
-      }
+      });
+      slugsInBatch.add(slug);
     }
 
+    let addedCount = 0;
     if (categories.length > 0) {
-      await Category.insertMany(categories, { ordered: false });
+       try {
+          await Category.insertMany(categories, { ordered: false });
+          addedCount = categories.length;
+       } catch (err) {
+           if (err.insertedDocs) addedCount = err.insertedDocs.length;
+           if (err.writeErrors) {
+               err.writeErrors.forEach(e => {
+                   errors.push({ row: 'DB Insert', error: e.errmsg });
+               });
+           }
+       }
     }
 
-    fs.unlinkSync(filePath); // delete uploaded file
-    res
-      .status(201)
-      .json({ message: `${categories.length} categories added successfully!` });
+    res.status(200).json({ 
+        message: `${addedCount} categories added, ${errors.length} failed.`,
+        addedCount,
+        failedCount: errors.length,
+        errors
+    });
+    
   } catch (error) {
+    if (req.file && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
     console.error(error);
     res.status(500).json({ message: error.message });
   }

@@ -38,9 +38,7 @@ export const getShippingAmount = async (req, res) => {
   try {
     const shipping = await Shipping.findOne();
     if (!shipping) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Shipping amount not set yet" });
+      return res.status(200).json({ success: true, amount: 0 });
     }
 
     res.status(200).json({ success: true, amount: shipping.amount });

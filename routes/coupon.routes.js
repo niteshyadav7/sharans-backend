@@ -6,13 +6,15 @@ import {
   generateBulkCoupons,
   getCoupons,
 } from "../controllers/coupon.controller.js";
+import { couponValidation, bulkCouponValidation } from "../middlewares/validators.js";
 
 const router = express.Router();
 
-// Admin only routes
-router.post("/", protect, admin, createCoupon); // create single coupon
-router.post("/bulk", protect, admin, generateBulkCoupons); // bulk generate
-router.get("/", protect, admin, getCoupons); // list all coupons
-router.delete("/:id", protect, admin, deleteCoupon); // delete coupon
+// Admin only routes with validation
+router.post("/", protect, admin, couponValidation, createCoupon);
+router.post("/bulk", protect, admin, bulkCouponValidation, generateBulkCoupons);
+router.get("/", protect, admin, getCoupons);
+router.delete("/:id", protect, admin, deleteCoupon);
 
 export default router;
+

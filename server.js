@@ -1,4 +1,5 @@
-import express from "express";
+import express from "express"; // server start
+
 import http from "http";
 import dotenv from "dotenv";
 import morgan from "morgan";
@@ -18,8 +19,21 @@ import cartRoutes from "./routes/cart.routes.js";
 import orderRoutes from "./routes/order.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import shippingRoutes from "./routes/shippingRoutes.js";
+import reviewRoutes from "./routes/review.routes.js";
+import wishlistRoutes from "./routes/wishlist.routes.js";
+import loyaltyRoutes from "./routes/loyalty.routes.js";
+import giftCardRoutes from "./routes/giftCard.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import settingsRoutes from "./routes/settings.routes.js";
+import layoutRoutes from "./routes/layout.routes.js";
+
 import Razorpay from "razorpay";
+
+
+
 import jwt from "jsonwebtoken";
+
 
 // Load environment variables
 dotenv.config();
@@ -73,23 +87,54 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Configure CORS
 
-// ---------- Fix CORS properly ----------
-app.use(cors());
-// app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-// app.use(cors({ origin: "https://sharans-backend.onrender.com", credentials: true }));
+// ---------- CORS Configuration ----------
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
+  'http://localhost:5173',
+  'http://localhost:3000'
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(helmet());
 app.use(compression());
 
 // Rate Limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
+  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
   message: {
     success: false,
     message: "Too many requests, please try again later.", 
   },
+  standardHeaders: true,
+  legacyHeaders: false,
 });
 app.use(limiter);
+
+// Stricter rate limiting for authentication routes
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: parseInt(process.env.AUTH_RATE_LIMIT_MAX) || 5, // 5 attempts
+  message: {
+    success: false,
+    message: "Too many authentication attempts, please try again later.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // HTTP request logging via morgan integrated with Winston
 if (NODE_ENV === "development") {
@@ -178,6 +223,10 @@ app.get("/api/protected", protect, (req, res) => {
   res.json({ message: `Hello ${req.user.name}, role: ${req.user.role}` });
 });
 
+// Apply stricter rate limiting to auth routes
+app.use("/api/auth/login", authLimiter);
+app.use("/api/auth/register", authLimiter);
+
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/coupons", couponRoutes);
@@ -185,13 +234,23 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/shipping", shippingRoutes);
+app.use("/api/reviews", reviewRoutes);
+app.use("/api/wishlist", wishlistRoutes);
+app.use("/api/loyalty", loyaltyRoutes);
+app.use("/api/gift-cards", giftCardRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/settings", settingsRoutes);
+app.use("/api/layout", layoutRoutes);
 // utils
 
-//---------------razorpay-----------------
-export const razorpayInstance = new Razorpay({
-  key_id: RAZORPAY_KEY_ID,
-  key_secret: RAZORPAY_KEY_SECRET,
-});
+
+
+
+
+
+
+
 
 //-----------------generate token----------
 export const generateToken = (id, role) => {

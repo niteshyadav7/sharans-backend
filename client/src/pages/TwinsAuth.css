@@ -1,0 +1,542 @@
+/* TWINS Fashion E-Commerce Auth - Exact Dribbble Recreation */
+
+/* ========== PAGE WRAPPER ========== */
+.twins-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========== TOP NAVIGATION BAR ========== */
+.twins-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 3rem;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  position: relative;
+  z-index: 100;
+}
+
+.twins-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.twins-nav-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.twins-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.twins-nav-links a {
+  font-size: 0.9375rem;
+  color: #1A1A1A;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.twins-nav-links a:hover {
+  color: #666666;
+}
+
+.twins-nav-links a span {
+  font-size: 0.625rem;
+}
+
+.twins-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.twins-search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  background: #FAFAFA;
+}
+
+.twins-search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.875rem;
+  color: #1A1A1A;
+  width: 200px;
+}
+
+.twins-search-box input::placeholder {
+  color: #999999;
+}
+
+.twins-nav-login-btn {
+  padding: 0.625rem 1.75rem;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.twins-nav-login-btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+}
+
+
+.twins-auth-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: single column */
+  background: #FFFFFF;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ========== LEFT PANEL - BRANDING ========== */
+.twins-left-panel {
+  display: none; /* Hidden on mobile */
+  background: #F8F6F4;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.twins-brand-header {
+  margin-bottom: 4rem;
+}
+
+.twins-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1A1A1A;
+}
+
+/* Tagline Section */
+.twins-tagline-section {
+  margin-bottom: 3rem;
+}
+
+.twins-tagline-small {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #666666;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.twins-tagline-main {
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #1A1A1A;
+  font-family: 'Playfair Display', serif;
+}
+
+.twins-highlight {
+  color: #D4A574; /* Golden/Tan color */
+  font-style: italic;
+}
+
+/* Info Card */
+.twins-info-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.twins-card-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.twins-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.twins-card-content {
+  padding: 2rem;
+  position: relative;
+}
+
+.twins-card-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+}
+
+.twins-card-content p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #666666;
+  margin-bottom: 1.5rem;
+}
+
+.twins-card-icon {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  color: #1A1A1A;
+  opacity: 0.3;
+}
+
+/* Footer Text */
+.twins-footer-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.twins-footer-text p {
+  color: #666666;
+}
+
+.twins-create-link {
+  color: #1A1A1A;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.twins-create-link:hover {
+  color: #D4A574;
+}
+
+/* ========== RIGHT PANEL - IMAGE + MODAL ========== */
+.twins-right-panel {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.twins-bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.twins-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.twins-bg-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+/* Floating Login Modal */
+.twins-login-modal {
+  position: relative;
+  z-index: 10;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.twins-modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Form Styles */
+.twins-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.twins-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.twins-form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.twins-form-group input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-bottom: 1.5px solid #E0E0E0;
+  font-size: 0.9375rem;
+  color: #1A1A1A;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.twins-form-group input::placeholder {
+  color: #999999;
+}
+
+.twins-form-group input:focus {
+  outline: none;
+  border-bottom-color: #1A1A1A;
+}
+
+.twins-password-wrapper {
+  position: relative;
+}
+
+.twins-password-toggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999999;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.twins-password-toggle:hover {
+  color: #1A1A1A;
+}
+
+/* Form Options */
+.twins-form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.twins-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #666666;
+}
+
+.twins-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1A1A1A;
+}
+
+.twins-forgot-link {
+  color: #666666;
+  transition: color 0.2s;
+}
+
+.twins-forgot-link:hover {
+  color: #1A1A1A;
+}
+
+/* Submit Button */
+.twins-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.twins-submit-btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.twins-submit-btn:active {
+  transform: translateY(0);
+}
+
+.twins-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Carousel Navigation */
+.twins-carousel-nav {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.twins-nav-btn {
+  background: none;
+  border: none;
+  color: #1A1A1A;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.twins-nav-btn:hover {
+  opacity: 0.6;
+}
+
+.twins-carousel-indicator {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablet and up (768px+) */
+@media (min-width: 768px) {
+  .twins-auth-container {
+    grid-template-columns: 45% 55%; /* Left: 45%, Right: 55% */
+  }
+
+  .twins-left-panel {
+    display: flex;
+  }
+
+  .twins-login-modal {
+    max-width: 460px;
+    padding: 3rem 2.5rem;
+  }
+
+  .twins-modal-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .twins-auth-container {
+    grid-template-columns: 40% 60%;
+  }
+
+  .twins-left-panel {
+    padding: 4rem 5rem;
+  }
+
+  .twins-tagline-main {
+    font-size: 3rem;
+  }
+
+  .twins-card-image {
+    height: 320px;
+  }
+}
+
+/* Large Desktop (1280px+) */
+@media (min-width: 1280px) {
+  .twins-left-panel {
+    padding: 5rem 6rem;
+  }
+
+  .twins-tagline-main {
+    font-size: 3.25rem;
+  }
+}
+
+/* Mobile Only Adjustments */
+@media (max-width: 767px) {
+  .twins-navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .twins-nav-links {
+    display: none; /* Hide menu links on mobile */
+  }
+
+  .twins-search-box {
+    display: none; /* Hide search on mobile */
+  }
+
+  .twins-nav-logo {
+    font-size: 1.125rem;
+  }
+
+  .twins-nav-login-btn {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8125rem;
+  }
+
+  .twins-right-panel {
+    padding: 0;
+    height: 100%;
+  }
+
+  .twins-login-modal {
+    padding: 2rem 1.5rem;
+    margin: 1rem; /* Small margin for mobile readability */
+    max-width: calc(100% - 2rem);
+  }
+
+  .twins-carousel-nav {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}

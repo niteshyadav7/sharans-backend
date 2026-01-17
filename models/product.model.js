@@ -1,24 +1,3 @@
-// import mongoose from "mongoose";
-
-// const productSchema = new mongoose.Schema(
-//   {
-//     name: { type: String, required: true, trim: true },
-//     description: { type: String },
-//     originalPrice: { type: Number, required: true }, // original price
-//     currentPrice: { type: Number, required: true },  // discounted price
-//     stock: { type: Number, required: true, default: 0 },
-//     category: { type: String },
-//     images: [{ type: String }], // multiple images
-//     sku: { type: String }, // optional SKU
-//     createdAt: { type: Date, default: Date.now },
-//   },
-//   { timestamps: true }
-// );
-
-// const Product = mongoose.model("Product", productSchema);
-
-// export default Product;
-
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
@@ -80,9 +59,35 @@ const productSchema = new mongoose.Schema(
       enum: ["active", "inactive", "out-of-stock"],
       default: "active",
     },
+
+    // Reviews & Ratings (aggregated data)
+    averageRating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
+    },
+    totalReviews: {
+      type: Number,
+      default: 0,
+    },
+    ratingDistribution: {
+      1: { type: Number, default: 0 },
+      2: { type: Number, default: 0 },
+      3: { type: Number, default: 0 },
+      4: { type: Number, default: 0 },
+      5: { type: Number, default: 0 },
+    },
   },
   { timestamps: true }
 );
+
+
+// Indexes for performance
+productSchema.index({ category: 1, status: 1 }); // Filter by category and status
+productSchema.index({ currentPrice: 1 }); // Sort by price
+productSchema.index({ status: 1, createdAt: -1 }); // Latest active products
+productSchema.index({ name: 'text', description: 'text' }); // Text search
 
 const Product = mongoose.model("Product", productSchema);
 export default Product;

@@ -6,12 +6,18 @@ import {
   getUserOrders,
   getAllOrders,
   updateOrderStatus,
+  getOrderTracking,
+  reorder,
 } from "../controllers/order.controller.js";
+import { 
+  createOrderValidation, 
+  updateOrderStatusValidation 
+} from "../middlewares/validators.js";
 
 const router = express.Router();
 
-// Create new order (COD or Razorpay)
-router.post("/create", protect, createOrder);
+// Create new order with validation
+router.post("/create", protect, createOrderValidation, createOrder);
 
 // Verify Razorpay payment
 router.post("/verify", protect, verifyPayment);
@@ -19,12 +25,17 @@ router.post("/verify", protect, verifyPayment);
 // Get user orders
 router.get("/", protect, getUserOrders);
 
-// // Update order status (Admin)
-// router.put("/:id/status", protect, updateOrderStatus);
+// Get order tracking
+router.get("/:id/tracking", protect, getOrderTracking);
 
-// this is the route of go
+// Reorder items
+router.post("/:id/reorder", protect, reorder);
+
+
+
 // Admin routes
 router.get("/all", protect, admin, getAllOrders);
-router.put("/:id/status", protect, admin, updateOrderStatus);
+router.put("/:id/status", protect, admin, updateOrderStatusValidation, updateOrderStatus);
 
 export default router;
+

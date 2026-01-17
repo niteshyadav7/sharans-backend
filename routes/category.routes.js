@@ -45,16 +45,18 @@ import {
   updateCategory,
 } from "../controllers/category.controller.js";
 import { protect, admin } from "../middlewares/auth.middleware.js";
+import { categoryValidation } from "../middlewares/validators.js";
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/" });
 
-// Bulk upload CSV
-router.post("/bulk", upload.single("file"), protect, admin, bulkUploadCategories);
+// Bulk upload CSV (no validation needed - CSV handles structure)
+router.post("/bulk", protect, admin, upload.single("file"), bulkUploadCategories);
 
-// Admin routes
-router.post("/", protect, admin, createCategory);
-router.put("/:id", protect, admin, updateCategory);
+
+// Admin routes with validation
+router.post("/", protect, admin, categoryValidation, createCategory);
+router.put("/:id", protect, admin, categoryValidation, updateCategory);
 router.delete("/:id", protect, admin, deleteCategory);
 
 // Public routes
@@ -62,3 +64,4 @@ router.get("/", getCategories);
 router.get("/:id", getCategoryById);
 
 export default router;
+

@@ -30,20 +30,48 @@ import {
   updateProfile,
   getAllUsers,
   toggleUserStatus,
+  verifyEmail,
+  resendVerificationEmail,
+  forgotPassword,
+  resetPassword,
 } from "../controllers/auth.controller.js";
 import { admin, protect } from "../middlewares/auth.middleware.js";
+import { 
+  registerValidation, 
+  loginValidation, 
+  updateProfileValidation 
+} from "../middlewares/validators.js";
+import { body } from "express-validator";
+import { validateRequest } from "../middlewares/validators.js";
 
 const router = express.Router();
 
-// Public routes
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+// Public routes with validation
+router.post("/register", registerValidation, registerUser);
+router.post("/login", loginValidation, loginUser);
+
+// Email verification routes
+router.get("/verify-email/:token", verifyEmail);
+router.post("/resend-verification", protect, resendVerificationEmail);
+
+// Password reset routes
+router.post("/forgot-password", [
+  body('email').isEmail().withMessage('Please provide a valid email'),
+  validateRequest
+], forgotPassword);
+
+router.post("/reset-password/:token", [
+  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  validateRequest
+], resetPassword);
 
 // Protected routes
-router.put("/profile", protect, updateProfile); // Update logged-in user's profile
+router.put("/profile", protect, updateProfileValidation, updateProfile);
 
 // Admin-only routes
-router.get("/all", protect, admin, getAllUsers); // Get all users
-router.patch("/toggle/:userId", protect, admin, toggleUserStatus); // Block/Activate user
+router.get("/all", protect, admin, getAllUsers);
+router.patch("/toggle/:userId", protect, admin, toggleUserStatus);
 
 export default router;
+
+
